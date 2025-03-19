@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root{
+    
+    --blanco: rgb(235, 241, 247);
+    --lila: rgb(130, 66, 190);
+    --celeste: rgb(79, 200, 248);
+    --azul: rgb(5, 5, 255);
+    --verde: rgb(83, 255, 3);
+    --fuente: "PT Serif", serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(to bottom,var(--lila),var(--verde)) ;
+  height: 100vh;
+  font-family: var(--fuente);
+
+}
+
+.contenedor{
+    width: 400px;
+    margin: auto;
+    max-width: 80%;
+
+}
+.perfil{
+    color: var(--blanco);
+
+}
+.perfil span{
+    letter-spacing: 2px;
+}
+.agregar-tarea{
+    background-color: var(--blanco);
+    height: 70px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    padding: 10px;
+    margin: 40px 0 ;
+}
+.agregartarea{
+    background-color: var(--blanco);
+    border: none;
+    height: 100%;
+    border: 100%;
+}
+
+.agregar{
+    font-size: 50px;
+    color: var(--lila);
+  
+
+}
+
+.agregar:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+
+}
+
+.agregartarea::placeholder{
+    font-size: 16;
+    color: var(--lila);
+    padding: 10;
+
+}
+
+.h3{
+    color: var(--blanco);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+li{
+    background: linear-gradient(to bottom,var(--azul),var(--verde)) ;
+    border-radius: 15px;
+    padding: 10;
+    display: flex;
+    align-items:center ;
+    margin: 5px 0;
+    justify-content: space-between;
+    
+
+}
+
+.check{
+    font-size: 25px;
+    color: var(--blanco);
+    
+}
+
+.check:hover{
+    color: var(--celeste);
+    cursor: pointer;
+
+}
+
+.borrar{
+    font-size: 25px;
+    color: var(--blanco);
+}
+
+.borrar:hover{
+    color: var(--celeste);
+    cursor: pointer;
+}
+
+.tachado{
+    color: var(--celeste);
+    text-decoration: line-through 2px;
+}
