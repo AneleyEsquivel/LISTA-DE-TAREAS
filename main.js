@@ -21,3 +21,22 @@ mas.addEventListener("click", () =>{
     }
     input.value = "";
 })
+
+// LLAMAR A LA FUNCIÓN CON TECLA ENTER
+
+document.addEventListener( "keyup", (e)=> {
+    if (e.key == 'Enter')  {
+        const tarea = input.value 
+    if(tarea){
+        agregarTarea(tarea)
+    }
+    input.value = "";
+    }
+})
+
+// LLAMAR A LA FUCIÓN CAMBIO DE ESTILO
+
+const cambiarEtilos = () => {
+    const link = document.getElementById("estilo");
+    link.href = link.href.includes("style.css") ? "style2.css" : "style.css";
+};
