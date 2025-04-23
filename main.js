@@ -1,19 +1,30 @@
+const fecha = document.getElementById ("fecha")
 const input = document.getElementById("agregar-tarea");
 console.log(input);
 const mas = document.getElementById("agregar");
 const lista = document.getElementById("lista1");
 
-const hechos = 'fa-check-circle';
+const hecho = 'fa-check-circle';
 const pendiente = 'fa-circle';
 const tachado = 'tachado';
 
-const agregarTarea = (tarea, check) => {
+let id= 0;
+
+const fechaActual = new Date();
+fecha.innerHTML= fechaActual.toLocaleDateString('es-AR',{
+weekday:'long',
+month: 'long',
+day: 'numeric'
+});
+
+const agregarTarea = (tarea, check, eliminado, id) => {
+    if (eliminado) {return}
     const estado = check ? hecho : pendiente;
     const tachar = check ? tachado : "";
 const elemento = `<li>
-                    <i class="far ${estado} check"  id="check" data="check"></i>
-                    <p class="tareaok ${tachar}" id="tareaok">${tarea}</p>
-                    <i class="fas fa-trash de borrar" id="borrar" data="borrar"></i>
+                    <i class="far ${estado} check"  id="check${id}" data="check"></i>
+                    <p class="tareaok ${tachar}" >${tarea}</p>
+                    <i class="fas fa-trash de borrar" id="borrar${id}" data="borrar"></i>
                 
                 </li>`
                 lista.insertAdjacentHTML("beforeend", elemento);
@@ -22,7 +33,7 @@ const elemento = `<li>
 const tareaRealizada = (element) => {
     element.classList.toggle(hecho);
     element.classList.toggle(pendiente);
-    element.parentNode.querySelector('.tarea').classList.taggle(tachado);
+    element.parentNode.querySelector('.tarea').classList.toggle(tachado);
 };
 
 const tareaEliminada = (element) => {
@@ -39,7 +50,8 @@ const cambiarEtilos = () => {
 mas.addEventListener("click", () =>{
     const tarea = input.value 
     if(tarea){
-        agregarTarea(tarea)
+        agregarTarea(tarea, false, false, id);
+        id++
     }
     input.value = "";
 })
@@ -50,23 +62,28 @@ document.addEventListener( "keyup", (e)=> {
     if (e.key == 'Enter')  {
         const tarea = input.value 
     if(tarea){
-        agregarTarea(tarea)
+        agregarTarea(tarea, false, false, id);
+        id++   
     }
     input.value = "";
     }
 })
 
-lista.addEventListener('click', function (event) {
-const element = event. target ;
-const elementData = element.atributes.data.value; 
+lista.addEventListener('click', function(event) {
+const element = event.target;
+const elementData = element.attributes.data.value; 
 if (elementData == 'check') {
-    tareaRealizada (element)
+    tareaRealizada(element)
 
 }
 else if (elementData == 'borrar'){
-    tareaEliminada (element)
+    tareaEliminada(element)
 }
 });
+
+
+
+
 
 
 
