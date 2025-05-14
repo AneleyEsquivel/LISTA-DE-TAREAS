@@ -1,4 +1,4 @@
-const fecha = document.getElementById ("fecha")
+const fecha = document.getElementById("fecha");
 const input = document.getElementById("agregar-tarea");
 console.log(input);
 const mas = document.getElementById("agregar");
@@ -34,7 +34,7 @@ const elemento = `<li>
 const tareaRealizada = (element) => {
     element.classList.toggle(hecho);
     element.classList.toggle(pendiente);
-    element.parentNode.querySelector('.tarea').classList.toggle(tachado);
+    element.parentNode.querySelector('.tareaok').classList.toggle(tachado);
 
     LIST[element.id].check = !LIST[element.id].check;
     console.log(LIST[element.id]);
@@ -68,6 +68,7 @@ mas.addEventListener("click", () =>{
             eliminado:false,
             id:id
         });
+        localStorage.setItem('GUARDADO',JSON.stringify(LIST));
         id++
     }
     input.value = "";
@@ -92,6 +93,8 @@ document.addEventListener( "keyup", (e)=> {
             eliminado:false,
             id:id
         });
+        localStorage.setItem('GUARDADO',JSON.stringify(LIST));
+            
         id++   
     }
     input.value = "";
@@ -108,7 +111,25 @@ if (elementData == 'check') {
 else if (elementData == 'borrar'){
     tareaEliminada(element)
 }
+localStorage.setItem('GUARDADO', JSON.stringify(LIST));
 });
+
+let data = localStorage.getItem('GUARDADO')
+if(data){
+    LIST = JSON.parse(data);
+    console.log(LIST);
+    id = LIST.length;
+    cargarLista(LIST);
+}else{
+    LIST = [];
+    id = 0;
+}
+
+function cargarLista(array){
+    array.forEach(function(item){
+        agregarTarea(item.tarea,item.id,item.check,item.eliminado)
+    })
+};
 
 
 
