@@ -127,7 +127,7 @@ if(data){
 
 function cargarLista(array){
     array.forEach(function(item){
-        agregarTarea(item.tarea,item.id,item.check,item.eliminado)
+        agregarTarea(item.tarea,item.check,item.eliminado,item.id)
     })
 };
 
